@@ -1,6 +1,42 @@
   $(document).ready(function(){
   window.dancers = [];
 
+  var pairDancers = function() {
+    window.dancers.forEach(function(dancer, i) {
+
+      if(dancer.pair) {
+        return;
+      }
+
+      var pairData = window.dancers.reduce(function(pairData,pairDancer, j) {
+        var d;
+
+        if( i === j || pairDancer.pair ) {
+          return;
+        }
+
+        d = Math.sqrt(Math.pow(dancer.top - pairDancer.top,2) + Math.pow(dancer.left - pairDancer.left,2));
+
+        if( d < pairData.d ) {
+          pairData.node = pairDancer;
+          pairData.d = d;
+        }
+
+        return pairData;
+      },{
+        node: null,
+        d: Infinity
+      });
+
+      if(pairData.node) {
+        dancer.pair = pairData.node;
+        dancer.pair.pair = dancer;
+      }
+
+    });
+
+  });
+
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -33,18 +69,23 @@
   });
 
   $(".lineUpButton").on("click", function(event) {
+
     setTimeout(function(){
       $('.conga').addClass('flash');
       setTimeout(function() {
         $('.conga').removeClass('flash')
       }, 3000)
     }, 5000);
+
     window.dancers.forEach(function(dancer) {
       dancer.lineUp();
     });
 
-
   });
+
+  $('.pairUpButton').on('click',function(e) {
+    pairDancers();
+  };
 
 });
 
