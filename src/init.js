@@ -87,6 +87,11 @@
     pairDancers();
 
     window.dancers.forEach(function(dancer) {
+
+      if(!dancer.pair) {
+        return;
+      }
+
       var oldPosition = {
         top: dancer.top,
         left: dancer.left
@@ -106,6 +111,7 @@
         dancer.pair = null;
         dancer.$node.removeClass('dance');
       }, 10000);
+
     });
   });
 
