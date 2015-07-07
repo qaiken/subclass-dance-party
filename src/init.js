@@ -4,7 +4,7 @@
   var pairDancers = function() {
     window.dancers.forEach(function(dancer, i) {
 
-      if(dancer.pair) {
+      if (dancer.pair) {
         return;
       }
 
@@ -12,10 +12,11 @@
         var d;
 
         if( i === j || pairDancer.pair ) {
-          return;
+          return pairData;
         }
 
-        d = Math.sqrt(Math.pow(dancer.top - pairDancer.top,2) + Math.pow(dancer.left - pairDancer.left,2));
+        d = Math.sqrt(Math.pow(dancer.top - pairDancer.top, 2) +
+         Math.pow(dancer.left - pairDancer.left, 2));
 
         if( d < pairData.d ) {
           pairData.node = pairDancer;
@@ -34,8 +35,7 @@
       }
 
     });
-
-  });
+  };
 
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
@@ -85,7 +85,29 @@
 
   $('.pairUpButton').on('click',function(e) {
     pairDancers();
-  };
+
+    window.dancers.forEach(function(dancer) {
+      var oldPosition = {
+        top: dancer.top,
+        left: dancer.left
+      };
+
+      var midPoint = {
+        top: ((dancer.top) + (dancer.pair.top)) / 2,
+        left: ((dancer.left) + (dancer.pair.left)) / 2
+      };
+
+      // CSS transition is set to 5s
+      dancer.setPosition(midPoint.top, midPoint.left);
+      // CSS animation is set to 5s
+      dancer.$node.addClass('dance');
+      setTimeout(function() {
+        dancer.setPosition(oldPosition.top, oldPosition.left);
+        dancer.pair = null;
+        dancer.$node.removeClass('dance');
+      }, 10000);
+    });
+  });
 
 });
 
