@@ -1,6 +1,13 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 body, html{
   height:100%;
 }
+
 body{
   margin: 0px;
   background-color:#444;
@@ -20,8 +27,52 @@ body, a:link, a:visited, a:active{
 .title{
   background-color: #777;
 }
-.dancer{
-  border:10px solid red;
-  border-radius:10px;
+.dancer {
+  border: 15px solid red;
+  border-radius: 15px;
   position:absolute;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.flash {
+  -webkit-animation: flash 3s ease 0s;
+  animation: flash 3s ease 0s;
+}
+
+.dancer,
+[class^="icon-"],
+[class*=" icon-"] {
+  opacity: 1;
+  transition: top 5s ease, left 5s ease, opacity 1s ease;
+}
+
+.conga {
+  text-transform: uppercase;
+  font-size: 150px;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+.hide {
+  opacity: 0;
 }
