@@ -56,8 +56,78 @@
 }
 
 .spin {
-  -webkit-animation: spin 1s ease 0s infinite;
-  animation: spin 1s ease 0s infinite;
+  -webkit-animation: spin 1s linear 0s infinite alternate;
+  animation: spin 1s linear 0s infinite alternate;
+}
+
+@-webkit-keyframes dance {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-100px);
+  }
+  75% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dance {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-100px);
+  }
+  75% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.dance {
+  -webkit-animation: dance 5s linear 5s;
+  animation: dance 5s linear 5s;
+}
+
+@-webkit-keyframes dance-reverse {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(100px);
+  }
+  75% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dance-reverse {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(100px);
+  }
+  75% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.dance-reverse {
+  -webkit-animation: dance-reverse 5s linear 5s;
+  animation: dance-reverse 5s linear 5s;
 }
 
 [class^="icon-"],
