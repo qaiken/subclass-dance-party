@@ -125,6 +125,21 @@
   }
 }
 
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(3);
+  }
+  75% {
+    transform: scale(.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .dance-reverse {
   -webkit-animation: dance-reverse 5s linear 5s;
   animation: dance-reverse 5s linear 5s;
@@ -136,6 +151,13 @@
   width: 30px;
   height: 30px;
   font-size: 30px;
+}
+
+[class^="icon-"]:hover,
+[class*=" icon-"]:hover,
+.dancer:hover {
+  -webkit-animation: zoom 1s linear 0s infinite alternate;
+  animation: zoom 1s zoom 0s infinite alternate;
 }
 
 [class^="icon-"]:before,
