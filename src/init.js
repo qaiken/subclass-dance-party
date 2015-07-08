@@ -1,6 +1,9 @@
   $(document).ready(function(){
   window.dancers = [];
 
+  var sfx = new Audio('sfx.wav');
+  sfx.volume = 0.5;
+
   var pairDancers = function() {
     window.dancers.forEach(function(dancer, i) {
 
@@ -119,6 +122,10 @@
       }, 10000);
 
     });
+  });
+
+  $('body').on('mouseover','.sfx',function(){
+    sfx.play();
   });
 
 });
