@@ -31,7 +31,11 @@
 
       if(pairData.node) {
         dancer.pair = pairData.node;
+        dancer.pair.danceClass = 'dance';
+
+
         dancer.pair.pair = dancer;
+        dancer.danceClass = 'dance-reverse';
       }
 
     });
@@ -102,14 +106,16 @@
         left: ((dancer.left) + (dancer.pair.left)) / 2
       };
 
+
       // CSS transition is set to 5s
       dancer.setPosition(midPoint.top, midPoint.left);
       // CSS animation is set to 5s
-      dancer.$node.addClass('dance');
+      dancer.$node.addClass(dancer.danceClass);
+
       setTimeout(function() {
         dancer.setPosition(oldPosition.top, oldPosition.left);
         dancer.pair = null;
-        dancer.$node.removeClass('dance');
+        dancer.$node.removeClass(dancer.danceClass);
       }, 10000);
 
     });
