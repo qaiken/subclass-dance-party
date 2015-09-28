@@ -1,6 +1,10 @@
 // Creates and returns a new dancer object that can step
 var MakeDancer = function(top, left, timeBetweenSteps){
 
+  if(!window.dancers) {
+    window.dancers = [];
+  }
+
   // use jQuery to create an HTML <span> tag
   this.$node = this.$node || $('<span class="dancer"></span>');
   this.$node.addClass('sfx');
